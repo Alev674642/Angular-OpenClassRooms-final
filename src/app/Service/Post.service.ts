@@ -6,10 +6,9 @@ import Datasnapshot = firebase.database.DataSnapshot;
 export class PostService {
     postsSubject = new Subject<Post[]>();
 
-    posts = [new Post(0, "titre1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    new Post(1, "titre2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud."),
-    new Post(2, "titre3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")];
-
+    posts = [new Post(0, "titre1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",new Date()),
+    new Post(1, "titre2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",new Date()),
+    new Post(2, "titre3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",new Date())];
 
     emitPostsSubject() {
         this.postsSubject.next(this.posts.slice());
@@ -27,7 +26,7 @@ export class PostService {
     }
 
     createPost(titre: string, content: string) {
-        this.posts.push(new Post(this.getNextId(), titre, content));
+        this.posts.push(new Post(this.getNextId(), titre, content,new Date()));
 
         this.emitPostsSubject();
     }
