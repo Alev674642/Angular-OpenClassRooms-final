@@ -1,23 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from './Service/Post.service';
+import * as firebase from 'firebase';
 
-import {Post} from './Post';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-
-
 
 export class AppComponent {
   title = 'OpenClassRooms-Angular-application-de-type-blog';
-  sousTitre = "Premier exercice du cours Angular d'OpenClassRooms : Créez une application de type blog";
-
-  Posts = [ new Post("titre1","Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-            new Post("titre2","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud."),
-            new Post("titre3","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")];
+  sousTitre = "Exercice final du cours Angular d'OpenClassRooms.";
 
 
+  constructor(private postService: PostService) {
+    const config = {
+      apiKey: "AIzaSyBNGv7CJDTkIKqN-xMcDdbx1K52XSabqUc",
+      authDomain: "angular-openclassrooms-final.firebaseapp.com",
+      databaseURL: "https://angular-openclassrooms-final.firebaseio.com",
+      projectId: "angular-openclassrooms-final",
+      storageBucket: "",
+      messagingSenderId: "812003674178",
+      appId: "1:812003674178:web:6c81aa876a96be88"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(config);
+  }
 }
+
 
 
